@@ -42,14 +42,24 @@ export default function Guide(props) {
 						<p>Pages:</p>
 						<ul>
 							{guide[0].pages.map((page) => (
-								<li>
-									<a href={page.url} target='_blank' rel='noopener noreferrer'>
+								<li key={page.id}>
+									<a
+										href={page.url}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='text-info'
+									>
 										{page.name}
 									</a>
 								</li>
 							))}
 						</ul>
-						<a href={guide[0].url} target='_blank' rel='noopener noreferrer'>
+						<a
+							href={guide[0].url}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='btn btn-primary'
+						>
 							View The Full Guide
 						</a>
 					</div>

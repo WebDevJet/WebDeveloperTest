@@ -47,8 +47,8 @@ export default function GuidesList() {
 	};
 
 	return (
-		<div>
-			<h1 className='text-center mb-4'>LibGuides Search Application</h1>
+		<div className='pt-4'>
+			<h1 className='text-center mb-4 pb-4'>LibGuides Search Application</h1>
 			<form onSubmit={handleSubmit}>
 				<div className='input-group mb-3'>
 					<input
@@ -71,7 +71,10 @@ export default function GuidesList() {
 				</div>
 				<div className='input-group mb-3 w-50'>
 					<div className='input-group-prepend'>
-						<label className='input-group-text' htmlFor='inputGroupSelect01'>
+						<label
+							className='input-group-text text-primary'
+							htmlFor='inputGroupSelect01'
+						>
 							Sort
 						</label>
 					</div>
@@ -81,7 +84,7 @@ export default function GuidesList() {
 						id='inputGroupSelect01'
 					>
 						<option defaultValue>Choose...</option>
-						<option value='name'>Alphabetically</option>
+						<option value='name'>Alphabetically By Title</option>
 						<option value='owner.last_name'>Author Last Name</option>
 						<option value='type_label'>Group Name</option>
 					</select>
@@ -91,14 +94,14 @@ export default function GuidesList() {
 				{list.map((guide) => (
 					<div key={guide.id} className='p-2  w-50 d-flex'>
 						<div className='card mb-4 w-100 d-flex'>
-							<h5 className='card-header'>{guide.name}</h5>
+							<h2 className='h5 card-header'>{guide.name}</h2>
 							<div className='card-body'>
 								<p>Group: {guide.type_label}</p>
 								<p>
 									Published Date: {guide.published.substring(5, 10)}-
 									{guide.published.substring(0, 4)}
 								</p>
-								<p>{guide.description}</p>
+								<p>Description: {guide.description}</p>
 								<p>
 									Author: {guide.owner.first_name} {guide.owner.last_name}
 								</p>
@@ -107,7 +110,7 @@ export default function GuidesList() {
 									to={{ pathname: `/${guide.id}` }}
 									className='btn btn-primary'
 								>
-									Read More
+									Read More <span className='sr-only'>about {guide.name}</span>
 								</Link>
 							</div>
 						</div>
