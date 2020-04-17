@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 import _ from 'lodash';
 import Spinner from './Spinner';
@@ -9,6 +10,25 @@ export default function GuidesList() {
 	const [list, setList] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [loading, isLoading] = useState(false);
+	const variants = {
+		hidden: { opacity: 1, scale: 0 },
+		visible: {
+			opacity: 1,
+			scale: 1,
+			transition: {
+				delay: 0.3,
+				when: 'beforeChildren',
+				staggerChildren: 0.1,
+			},
+		},
+	};
+	const item = {
+		hidden: { y: 20, opacity: 0 },
+		visible: {
+			y: 0,
+			opacity: 1,
+		},
+	};
 
 	useEffect(() => {
 		getList();
@@ -98,9 +118,18 @@ export default function GuidesList() {
 			{loading === true ? (
 				<Spinner />
 			) : (
-				<div className='d-flex flex-wrap'>
+				<motion.ul
+					variants={variants}
+					initial='hidden'
+					animate='visible'
+					className='d-flex flex-wrap'
+				>
 					{list.map((guide) => (
-						<div key={guide.id} className='p-2  w-50 d-flex'>
+						<motion.li
+							key={guide.id}
+							variants={item}
+							className='p-2  w-50 d-flex'
+						>
 							<div className='card mb-4 w-100 d-flex'>
 								<h2 className='h5 card-header'>{guide.name}</h2>
 								<div className='card-body'>
@@ -123,9 +152,9 @@ export default function GuidesList() {
 									</Link>
 								</div>
 							</div>
-						</div>
+						</motion.li>
 					))}
-				</div>
+				</motion.ul>
 			)}
 		</div>
 	);

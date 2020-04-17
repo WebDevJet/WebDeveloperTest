@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Spinner from './Spinner';
+import { motion } from 'framer-motion';
 
 export default function Guide(props) {
 	const { id } = props.match.params;
@@ -25,7 +26,11 @@ export default function Guide(props) {
 			{loading === true ? (
 				<Spinner />
 			) : (
-				<div>
+				<motion.div
+					initial={{ opacity: 0, y: 100 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.8 }}
+				>
 					{guide !== '' ? (
 						<div className='card'>
 							<h1 className='card-header'>{guide[0].name}</h1>
@@ -76,7 +81,7 @@ export default function Guide(props) {
 					) : (
 						''
 					)}
-				</div>
+				</motion.div>
 			)}
 		</div>
 	);
