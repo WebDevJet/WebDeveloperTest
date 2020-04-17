@@ -1,3 +1,11 @@
+# Web Developer Test
+This application is used to pull information from the LibGuides API and display it to the user as cards.  It uses a relevance search. Search terms can include anything relevant with examples being "author name", "group", or "keyword". It is built with React.js and uses Bootstrap for styling. It is hosted using Netlify.
+
+This application is in compliance with WCAG 2.1 accessibility standards.
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
