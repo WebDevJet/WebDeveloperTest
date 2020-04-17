@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
+import Spinner from './Spinner';
 
 export default function GuidesList() {
 	//Create state variables for setList and setSearchTerm
 	const [list, setList] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
+	const [loading, isLoading] = useState(false);
 
 	useEffect(() => {
 		getList();
@@ -14,15 +16,18 @@ export default function GuidesList() {
 
 	// Create function that pulls data from API and stores it in a state variable
 	function getList() {
+		isLoading(true);
 		axios
 			.get(
 				`https://cors-anywhere.herokuapp.com/http://lgapi-us.libapps.com/1.1/guides?site_id=8488&key=0b8da796b00334ae3471f60e6a10e8c6&search_terms=${searchTerm}&sort_by=relevance&expand=owner&status=1`
 			)
+
 			.then((res) => {
 				setList(res.data);
 				console.log(res.data);
 				console.log(searchTerm);
-			});
+			})
+			.then(() => isLoading(false));
 	}
 
 	// Create function to keep page from refreshing and call getList on Submit
@@ -90,33 +95,38 @@ export default function GuidesList() {
 					</select>
 				</div>
 			</form>
-			<div className='d-flex flex-wrap'>
-				{list.map((guide) => (
-					<div key={guide.id} className='p-2  w-50 d-flex'>
-						<div className='card mb-4 w-100 d-flex'>
-							<h2 className='h5 card-header'>{guide.name}</h2>
-							<div className='card-body'>
-								<p>Group: {guide.type_label}</p>
-								<p>
-									Published Date: {guide.published.substring(5, 10)}-
-									{guide.published.substring(0, 4)}
-								</p>
-								<p>Description: {guide.description}</p>
-								<p>
-									Author: {guide.owner.first_name} {guide.owner.last_name}
-								</p>
+			{loading === true ? (
+				<Spinner />
+			) : (
+				<div className='d-flex flex-wrap'>
+					{list.map((guide) => (
+						<div key={guide.id} className='p-2  w-50 d-flex'>
+							<div className='card mb-4 w-100 d-flex'>
+								<h2 className='h5 card-header'>{guide.name}</h2>
+								<div className='card-body'>
+									<p>Group: {guide.type_label}</p>
+									<p>
+										Published Date: {guide.published.substring(5, 10)}-
+										{guide.published.substring(0, 4)}
+									</p>
+									<p>Description: {guide.description}</p>
+									<p>
+										Author: {guide.owner.first_name} {guide.owner.last_name}
+									</p>
 
-								<Link
-									to={{ pathname: `/${guide.id}` }}
-									className='btn btn-primary'
-								>
-									Read More <span className='sr-only'>about {guide.name}</span>
-								</Link>
+									<Link
+										to={{ pathname: `/${guide.id}` }}
+										className='btn btn-primary'
+									>
+										Read More{' '}
+										<span className='sr-only'>about {guide.name}</span>
+									</Link>
+								</div>
 							</div>
 						</div>
-					</div>
-				))}
-			</div>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }
