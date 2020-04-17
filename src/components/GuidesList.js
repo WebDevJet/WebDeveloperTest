@@ -125,11 +125,7 @@ export default function GuidesList() {
 					className='d-flex flex-wrap'
 				>
 					{list.map((guide) => (
-						<motion.li
-							key={guide.id}
-							variants={item}
-							className='p-2  w-50 d-flex'
-						>
+						<motion.li key={guide.id} variants={item} className='  w-50 d-flex'>
 							<div className='card mb-4 w-100 d-flex'>
 								<h2 className='h5 card-header'>{guide.name}</h2>
 								<div className='card-body'>

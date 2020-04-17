@@ -6,3 +6,14 @@
 	height: 1px;
 	overflow: hidden;
 }
+
+li:nth-child(even) {
+	padding-left: 0.5rem;
+}
+li:nth-child(odd) {
+	padding-right: 0.5rem;
+}
+
+ul {
+	padding: 0px;
+}
