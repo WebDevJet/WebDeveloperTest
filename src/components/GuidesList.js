@@ -118,7 +118,7 @@ export default function GuidesList() {
 			{loading === true ? (
 				<Spinner />
 			) : (
-				<motion.ul
+				<motion.ol
 					variants={variants}
 					initial='hidden'
 					animate='visible'
@@ -150,7 +150,7 @@ export default function GuidesList() {
 							</div>
 						</motion.li>
 					))}
-				</motion.ul>
+				</motion.ol>
 			)}
 		</div>
 	);

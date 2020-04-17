@@ -7,13 +7,13 @@
 	overflow: hidden;
 }
 
-li:nth-child(even) {
+ol li:nth-child(even) {
 	padding-left: 0.5rem;
 }
-li:nth-child(odd) {
+ol li:nth-child(odd) {
 	padding-right: 0.5rem;
 }
 
-ul {
+ol {
 	padding: 0px;
 }
