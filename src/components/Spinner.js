@@ -1,6 +1,7 @@
 import React from 'react';
 import spinner from './spinner.gif';
 
+// Create spinner component for loading
 const Spinner = () => {
 	return (
 		<img

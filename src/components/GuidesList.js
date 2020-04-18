@@ -6,7 +6,7 @@ import _ from 'lodash';
 import Spinner from './Spinner';
 
 export default function GuidesList() {
-	//Create state variables for setList and setSearchTerm
+	//Create state variables for setList and setSearchTerm, set loading to false
 	const [list, setList] = useState([]);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [loading, isLoading] = useState(false);
@@ -30,6 +30,7 @@ export default function GuidesList() {
 		},
 	};
 
+	//display the list by default when the component renders
 	useEffect(() => {
 		getList();
 	}, []);
@@ -61,6 +62,7 @@ export default function GuidesList() {
 		setSearchTerm(e.target.value);
 	}
 
+	// Using lodash, created a sort function that sorts alphabetically by name. The name had to be made lowercase to sort names such as 'eBooks' correctly.
 	const sortBy = (e) => {
 		if (e.target.value === 'name') {
 			setList(
@@ -115,6 +117,8 @@ export default function GuidesList() {
 					</select>
 				</div>
 			</form>
+
+			{/* If loading is true then display the spinner component. If loading is false display the list of guides.*/}
 			{loading === true ? (
 				<Spinner />
 			) : (
@@ -124,6 +128,7 @@ export default function GuidesList() {
 					animate='visible'
 					className='d-flex flex-wrap'
 				>
+					{/* Map through guide and display different elements on cards. */}
 					{list.map((guide) => (
 						<motion.li key={guide.id} variants={item} className='  w-50 d-flex'>
 							<div className='card mb-4 w-100 d-flex'>

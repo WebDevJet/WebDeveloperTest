@@ -8,6 +8,8 @@ export default function Guide(props) {
 	const [guide, setGuide] = useState('');
 	const [loading, isLoading] = useState(false);
 
+	// Set loading to true. Get response from API. Set loading to false.
+
 	useEffect(() => {
 		isLoading(true);
 		axios
@@ -23,6 +25,7 @@ export default function Guide(props) {
 	console.log(guide);
 	return (
 		<div>
+			{/* If loading is equal to true, Display the spinner component. Else display the card. */}
 			{loading === true ? (
 				<Spinner />
 			) : (

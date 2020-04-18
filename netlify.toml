@@ -1,3 +1,4 @@
+# add redirect to fix about page on netlify
 [[redirects]]
 from="/*"
 to="/index.html"

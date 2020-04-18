@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function About() {
 	return (
+		// Create about component
 		<div className='pt-4'>
 			<h1 className='h3 text-center'>About This App</h1>
 			<p className='text-center'>
