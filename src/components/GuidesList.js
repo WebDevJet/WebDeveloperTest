@@ -79,7 +79,7 @@ export default function GuidesList() {
 					<input
 						type='text'
 						className='form-control'
-						placeholder='Enter a Search Term'
+						placeholder='Enter a Search Term.'
 						aria-label='Search Term'
 						aria-describedby='button-addon2'
 						onChange={handleChange}
